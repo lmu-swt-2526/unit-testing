@@ -11,18 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
  * Um {@code CheckoutService} isoliert zu testen, benötigen Sie einen Mock für das
  * {@code PaymentGateway}-Interface.
  *
- * <p>Ihre Aufgaben:
- * <ol>
- *   <li>Erstellen Sie eine innere Klasse {@code MockPaymentGateway}, die
- *       {@link PaymentGateway} implementiert. Die Klasse soll:
- *       <ul>
- *         <li>aufzeichnen, ob {@code processPayment} aufgerufen wurde</li>
- *         <li>die übergebenen Parameter ({@code cardNumber}, {@code amount}) speichern</li>
- *         <li>einen konfigurierbaren Rückgabewert haben (default: {@code true})</li>
- *       </ul>
- *   </li>
- *   <li>Implementieren Sie die TODO-Tests.</li>
- * </ol>
+ * <p>Die Tests sind bereits fertig geschrieben, kompilieren aber nicht, weil die Klasse
+ * {@code MockPaymentGateway} noch fehlt.
+ *
+ * <p>Ihre Aufgabe: Erstellen Sie eine innere Klasse {@code MockPaymentGateway}, die
+ * {@link PaymentGateway} implementiert, sodass alle Tests kompilieren und grün werden.
  *
  * <p>Schauen Sie sich {@link Aufgabe3_BeispielTest} als Referenz an.
  */
@@ -30,29 +23,41 @@ class Aufgabe3_AufgabeTest {
 
     // TODO: Erstellen Sie hier eine innere Klasse MockPaymentGateway, die das
     //       Interface PaymentGateway implementiert.
+    //       Entkommentieren Sie danach die Tests unten.
 
+    /*
     @Test
-    void todoCheckoutSuccessful() {
-        // TODO: Erstellen Sie einen MockPaymentGateway, der true zurückgibt.
-        //       Erstellen Sie einen CheckoutService mit diesem Mock.
-        //       Prüfen Sie, dass checkout "SUCCESS" zurückgibt und der Mock
-        //       mit den richtigen Parametern aufgerufen wurde.
-        fail("Test noch nicht implementiert");
+    void checkoutSuccessful() {
+        // Arrange
+        String cardNumber = "4111111111111111";
+        double amount = 99.99;
+        String expectedResult = "SUCCESS";
+        MockPaymentGateway mockGateway = new MockPaymentGateway();
+        CheckoutService service = new CheckoutService(mockGateway);
+
+        // Act
+        String result = service.checkout(cardNumber, amount);
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    void todoCheckoutPaymentFailed() {
-        // TODO: Erstellen Sie einen MockPaymentGateway, der false zurückgibt.
-        //       Prüfen Sie, dass checkout "PAYMENT_FAILED" zurückgibt.
-        fail("Test noch nicht implementiert");
-    }
+    void checkoutInvalidAmount() {
+        // Arrange
+        String cardNumber = "4111111111111111";
+        double amount = -10.00;
+        String expectedResult = "INVALID_AMOUNT";
+        MockPaymentGateway mockGateway = new MockPaymentGateway();
+        CheckoutService service = new CheckoutService(mockGateway);
 
-    @Test
-    void todoCheckoutInvalidAmount() {
-        // TODO: Prüfen Sie, dass checkout mit amount <= 0 direkt "INVALID_AMOUNT"
-        //       zurückgibt, ohne den PaymentGateway aufzurufen.
-        fail("Test noch nicht implementiert");
+        // Act
+        String result = service.checkout(cardNumber, amount);
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
+    */
 
     // ========================================================================
     // Bonus: Dasselbe mit Mockito

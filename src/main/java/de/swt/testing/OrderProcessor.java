@@ -5,14 +5,14 @@ package de.swt.testing;
  */
 public class OrderProcessor {
 
-    private final EmailService emailService;
+    private final NotificationService emailService;
 
-    public OrderProcessor(EmailService emailService) {
+    public OrderProcessor(NotificationService emailService) {
         this.emailService = emailService;
     }
 
     /**
-     * Processes an order and sends a confirmation email.
+     * Processes an order and sends a confirmation notification.
      *
      * @param customerEmail the customer's email address
      * @param amount the order amount
@@ -21,6 +21,6 @@ public class OrderProcessor {
     public boolean processOrder(String customerEmail, double amount) {
         String subject = "Order Confirmation";
         String body = "Your order of %.2f EUR has been processed.".formatted(amount);
-        return emailService.sendEmail(customerEmail, subject, body);
+        return emailService.notify(customerEmail, subject, body);
     }
 }
