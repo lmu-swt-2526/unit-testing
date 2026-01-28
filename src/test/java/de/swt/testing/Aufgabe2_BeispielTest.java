@@ -12,15 +12,17 @@ import java.nio.file.Path;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Aufgabe 2: Setup und Teardown mit {@code @BeforeEach} und {@code @AfterEach}
+ * Beispiel: Setup und Teardown mit {@code @BeforeEach} und {@code @AfterEach}
  *
  * <p>Die Klasse {@link TempFileProcessor} arbeitet mit Dateien in einem temporären
  * Verzeichnis. Für jeden Test muss ein frisches Verzeichnis bereitstehen, und nach
  * jedem Test sollten die Dateien aufgeräumt werden.
  *
- * <p>In dieser Aufgabe ist das Setup bereits implementiert. Schreiben Sie weitere Tests.
+ * <p>{@code @BeforeEach} wird vor jedem Test ausgeführt und eignet sich für die
+ * Initialisierung gemeinsamer Objekte. {@code @AfterEach} wird nach jedem Test
+ * ausgeführt und eignet sich zum Aufräumen von Ressourcen.
  */
-class Aufgabe2_SetupTeardownTest {
+class Aufgabe2_BeispielTest {
 
     @TempDir
     Path tempDir;
@@ -69,30 +71,5 @@ class Aufgabe2_SetupTeardownTest {
 
         // Assert
         assertEquals(expectedContent, content);
-    }
-
-    // ========================================================================
-    // TODO: Schreiben Sie weitere Tests für TempFileProcessor.
-    // ========================================================================
-
-    @Test
-    void todoCountLines() throws IOException {
-        // TODO: Schreiben Sie eine Datei mit mehreren Zeilen und prüfen Sie,
-        //       dass readFile den gesamten Inhalt inklusive Zeilenumbrüche zurückgibt.
-        //       Tipp: Verwenden Sie "line1\nline2\nline3" als Inhalt.
-        fail("Test noch nicht implementiert");
-    }
-
-    @Test
-    void todoEmptyFile() throws IOException {
-        // TODO: Was passiert, wenn eine leere Datei geschrieben und gelesen wird?
-        fail("Test noch nicht implementiert");
-    }
-
-    @Test
-    void todoReadNonExistentFile() {
-        // TODO: Was passiert, wenn eine Datei gelesen wird, die nicht existiert?
-        //       Welche Exception wird geworfen?
-        fail("Test noch nicht implementiert");
     }
 }

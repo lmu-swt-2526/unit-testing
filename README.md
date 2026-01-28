@@ -14,15 +14,21 @@
 
 Die Testergebnisse finden Sie unter `build/reports/tests/test/index.html`.
 
+Gezielte Testausführung:
+
+```bash
+./gradlew test --tests Aufgabe1_BugFindingTest
+```
+
 ## Aufgaben
 
-| Aufgabe | Datei | Thema |
-|---------|-------|-------|
-| 1 | `Aufgabe1_BugFindingTest.java` | Bugs in `BankingService` finden |
-| 2 | `Aufgabe2_SetupTeardownTest.java` | Setup/Teardown mit Dateien |
-| 3 | `Aufgabe3_MocksTest.java` | Mocking von Hand und mit Mockito |
+| Aufgabe | Beispiel | Aufgabe | Thema |
+|---------|----------|---------|-------|
+| 1 | — | `Aufgabe1_BugFindingTest.java` | Bugs in `BankingService` finden |
+| 2 | `Aufgabe2_BeispielTest.java` | `Aufgabe2_AufgabeTest.java` | Setup/Teardown mit Dateien |
+| 3 | `Aufgabe3_BeispielTest.java` | `Aufgabe3_AufgabeTest.java` | Mocking von Hand und mit Mockito |
 
-Jede Testdatei enthält fertige Beispiele und mit `TODO` markierte Stellen, die Sie implementieren sollen. Suchen Sie nach `fail("Test noch nicht implementiert")`.
+Jede Aufgabe hat eine Beispiel-Datei als Referenz und eine Aufgaben-Datei mit `TODO`-Stellen, die Sie implementieren sollen. Suchen Sie nach `fail("Test noch nicht implementiert")`.
 
 ## Tipps
 
