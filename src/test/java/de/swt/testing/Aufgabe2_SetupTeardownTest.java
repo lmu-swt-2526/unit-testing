@@ -18,8 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Verzeichnis. Für jeden Test muss ein frisches Verzeichnis bereitstehen, und nach
  * jedem Test sollten die Dateien aufgeräumt werden.
  *
- * <p>In dieser Aufgabe ist das Setup bereits implementiert. Schreiben Sie weitere Tests
- * und beantworten Sie die Frage zum Teardown.
+ * <p>In dieser Aufgabe ist das Setup bereits implementiert. Schreiben Sie weitere Tests.
  */
 class Aufgabe2_SetupTeardownTest {
 
@@ -96,9 +95,4 @@ class Aufgabe2_SetupTeardownTest {
         //       Welche Exception wird geworfen?
         fail("Test noch nicht implementiert");
     }
-
-    // ========================================================================
-    // Frage: Warum ist das tearDown() in diesem Fall eigentlich nicht zwingend
-    // nötig? Was macht @TempDir automatisch?
-    // ========================================================================
 }

@@ -17,6 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class Aufgabe1_BugFindingTest {
 
+    private final BankingService bankingService = new BankingService();
+
     @Test
     void transferMovesMoneyBetweenAccounts() {
         // Arrange
@@ -27,7 +29,7 @@ class Aufgabe1_BugFindingTest {
         double expectedTargetBalance = 150;
 
         // Act
-        double[] result = BankingService.transfer(amount, sourceBalance, targetBalance);
+        double[] result = bankingService.transfer(amount, sourceBalance, targetBalance);
 
         // Assert
         assertNotNull(result);
@@ -43,7 +45,7 @@ class Aufgabe1_BugFindingTest {
         double targetBalance = 100;
 
         // Act
-        double[] result = BankingService.transfer(amount, sourceBalance, targetBalance);
+        double[] result = bankingService.transfer(amount, sourceBalance, targetBalance);
 
         // Assert
         assertNull(result, "Transfer ohne ausreichendes Guthaben sollte null zurückgeben");
@@ -59,7 +61,7 @@ class Aufgabe1_BugFindingTest {
         double expectedTargetBalance = 1;
 
         // Act
-        double[] result = BankingService.transfer(amount, sourceBalance, targetBalance);
+        double[] result = bankingService.transfer(amount, sourceBalance, targetBalance);
 
         // Assert
         assertNotNull(result);
@@ -101,7 +103,7 @@ class Aufgabe1_BugFindingTest {
         double expectedTargetBalance = 300;
 
         // Act
-        double[] result = BankingService.transfer(amount, sourceBalance, targetBalance);
+        double[] result = bankingService.transfer(amount, sourceBalance, targetBalance);
 
         // Assert
         assertNotNull(result, "Transfer mit exaktem Kontostand sollte funktionieren");

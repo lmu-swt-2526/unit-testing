@@ -14,7 +14,7 @@ public class BankingService {
      * @return a two-element array with the new source and target balances
      * @throws IllegalArgumentException if amount is not greater than zero
      */
-    public static double[] transfer(double amount, double sourceBalance, double targetBalance) {
+    public double[] transfer(double amount, double sourceBalance, double targetBalance) {
         if (sourceBalance > amount) {
             return new double[]{sourceBalance - amount, targetBalance + amount};
         }
