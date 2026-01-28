@@ -3,20 +3,15 @@ package de.swt.testing;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Beispiel: Setup und Teardown mit {@code @BeforeEach} und {@code @AfterEach}
  *
- * <p>Die Klasse {@link TempFileProcessor} arbeitet mit Dateien in einem temporären
- * Verzeichnis. Für jeden Test muss ein frisches Verzeichnis bereitstehen, und nach
- * jedem Test sollten die Dateien aufgeräumt werden.
+ * <p>Die Klasse {@link ShoppingCart} ist ein Warenkorb, dem Artikel hinzugefügt werden
+ * können. Vor jedem Test wird ein leerer Warenkorb erstellt, nach jedem Test wird er
+ * geleert.
  *
  * <p>{@code @BeforeEach} wird vor jedem Test ausgeführt und eignet sich für die
  * Initialisierung gemeinsamer Objekte. {@code @AfterEach} wird nach jedem Test
@@ -24,52 +19,53 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class Aufgabe2_BeispielTest {
 
-    @TempDir
-    Path tempDir;
-
-    private TempFileProcessor processor;
+    private ShoppingCart cart;
 
     @BeforeEach
     void setUp() {
-        processor = new TempFileProcessor(tempDir);
+        cart = new ShoppingCart();
     }
 
     @AfterEach
-    void tearDown() throws IOException {
-        // Aufräumen: Alle Dateien im temp-Verzeichnis löschen
-        try (var files = Files.list(tempDir)) {
-            for (Path file : files.toList()) {
-                Files.deleteIfExists(file);
-            }
-        }
+    void tearDown() {
+        cart.clear();
     }
 
     @Test
-    void writeAndReadFile() throws IOException {
+    void addItemIncreasesTotal() {
         // Arrange
-        String filename = "test.txt";
-        String expectedContent = "Hello World";
-        processor.processFile(filename, expectedContent);
+        String itemName = "Notebook";
+        double itemPrice = 999.99;
+        double expectedTotal = 999.99;
 
         // Act
-        String content = processor.readFile(filename);
+        cart.addItem(itemName, itemPrice);
 
         // Assert
-        assertEquals(expectedContent, content);
+        assertEquals(expectedTotal, cart.getTotal());
     }
 
     @Test
-    void overwriteFileReplacesContent() throws IOException {
+    void addMultipleItemsSumsTotal() {
         // Arrange
-        String filename = "data.txt";
-        String expectedContent = "new content";
-        processor.processFile(filename, "old content");
-        processor.processFile(filename, expectedContent);
+        double expectedTotal = 34.97;
+        cart.addItem("Stift", 1.99);
+        cart.addItem("Heft", 2.99);
+        cart.addItem("Buch", 29.99);
 
         // Act
-        String content = processor.readFile(filename);
+        double total = cart.getTotal();
 
         // Assert
-        assertEquals(expectedContent, content);
+        assertEquals(expectedTotal, total, 0.001);
+    }
+
+    @Test
+    void emptyCartHasZeroItems() {
+        // Act
+        int itemCount = cart.getItemCount();
+
+        // Assert
+        assertEquals(0, itemCount);
     }
 }

@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
  *       mit dem temporären Verzeichnis {@code tempDir} initialisiert.</li>
  *   <li>Implementieren Sie eine {@code @AfterEach}-Methode, die alle Dateien im
  *       temporären Verzeichnis nach jedem Test löscht.</li>
- *   <li>Implementieren Sie die TODO-Tests.</li>
  * </ol>
  *
  * <p>Schauen Sie sich {@link Aufgabe2_BeispielTest} als Referenz an.
@@ -37,7 +36,7 @@ class Aufgabe2_AufgabeTest {
     // TODO: Implementieren Sie eine @AfterEach-Methode, die alle Dateien aufräumt.
 
     @Test
-    void readBackWrittenContent() throws IOException {
+    void readFileReturnsCorrectContent() throws IOException {
         // Dieser Test schlägt fehl, solange setUp() nicht implementiert ist.
         // Arrange
         String filename = "aufgabe.txt";
@@ -49,26 +48,5 @@ class Aufgabe2_AufgabeTest {
 
         // Assert
         assertEquals(expectedContent, content);
-    }
-
-    @Test
-    void todoCountLines() throws IOException {
-        // TODO: Schreiben Sie eine Datei mit mehreren Zeilen und prüfen Sie,
-        //       dass readFile den gesamten Inhalt inklusive Zeilenumbrüche zurückgibt.
-        //       Tipp: Verwenden Sie "line1\nline2\nline3" als Inhalt.
-        fail("Test noch nicht implementiert");
-    }
-
-    @Test
-    void todoEmptyFile() throws IOException {
-        // TODO: Was passiert, wenn eine leere Datei geschrieben und gelesen wird?
-        fail("Test noch nicht implementiert");
-    }
-
-    @Test
-    void todoReadNonExistentFile() {
-        // TODO: Was passiert, wenn eine Datei gelesen wird, die nicht existiert?
-        //       Welche Exception wird geworfen?
-        fail("Test noch nicht implementiert");
     }
 }
