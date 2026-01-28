@@ -39,4 +39,3 @@ Jede Aufgabe hat eine Beispiel-Datei als Referenz und eine Aufgaben-Datei mit `T
 ## Bonus
 
 - Ersetzen Sie den manuellen Mock in Aufgabe 3 durch Mockito (auskommentiertes Beispiel am Ende der Datei).
-- Schreiben Sie einen parametrisierten Test mit `@ParameterizedTest` für `BankingService.transfer`.
