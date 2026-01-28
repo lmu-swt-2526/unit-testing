@@ -11,16 +11,16 @@ import static org.junit.jupiter.api.Assertions.*;
  * und isoliert laufen. Ein manueller Mock ist eine Unterklasse oder Implementierung,
  * die das Verhalten der echten Klasse ersetzt und die Aufrufe aufzeichnet.
  *
- * <p>Hier wird {@link EmailService} durch einen {@link MockEmailService} ersetzt, um
+ * <p>Hier wird {@link NotificationService} durch einen {@link MockNotificationService} ersetzt, um
  * {@link OrderProcessor} isoliert zu testen.
  */
 class Aufgabe3_BeispielTest {
 
     /**
-     * Ein Mock für {@link EmailService}, der keine echte E-Mail sendet, sondern
+     * Ein Mock für {@link NotificationService}, der keine echte Notification sendet, sondern
      * die Aufrufe aufzeichnet.
      */
-    static class MockEmailService extends EmailService {
+    private static class MockNotificationService implements NotificationService {
         boolean wasCalled = false;
         String lastTo;
         String lastSubject;
@@ -28,7 +28,7 @@ class Aufgabe3_BeispielTest {
         boolean returnValue = true;
 
         @Override
-        public boolean sendEmail(String to, String subject, String body) {
+        public boolean notify(String to, String subject, String body) {
             wasCalled = true;
             lastTo = to;
             lastSubject = subject;
@@ -43,7 +43,7 @@ class Aufgabe3_BeispielTest {
         String customerEmail = "test@example.com";
         double orderAmount = 42.50;
         String expectedSubject = "Order Confirmation";
-        MockEmailService mockEmail = new MockEmailService();
+        MockNotificationService mockEmail = new MockNotificationService();
         OrderProcessor processor = new OrderProcessor(mockEmail);
 
         // Act
@@ -62,7 +62,7 @@ class Aufgabe3_BeispielTest {
         // Arrange
         String customerEmail = "test@example.com";
         double orderAmount = 10.00;
-        MockEmailService mockEmail = new MockEmailService();
+        MockNotificationService mockEmail = new MockNotificationService();
         mockEmail.returnValue = false;
         OrderProcessor processor = new OrderProcessor(mockEmail);
 
