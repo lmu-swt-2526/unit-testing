@@ -45,19 +45,31 @@ class Aufgabe2_SetupTeardownTest {
 
     @Test
     void writeAndReadFile() throws IOException {
-        processor.processFile("test.txt", "Hello World");
+        // Arrange
+        String filename = "test.txt";
+        String expectedContent = "Hello World";
+        processor.processFile(filename, expectedContent);
 
-        String content = processor.readFile("test.txt");
-        assertEquals("Hello World", content);
+        // Act
+        String content = processor.readFile(filename);
+
+        // Assert
+        assertEquals(expectedContent, content);
     }
 
     @Test
     void overwriteFileReplacesContent() throws IOException {
-        processor.processFile("data.txt", "old content");
-        processor.processFile("data.txt", "new content");
+        // Arrange
+        String filename = "data.txt";
+        String expectedContent = "new content";
+        processor.processFile(filename, "old content");
+        processor.processFile(filename, expectedContent);
 
-        String content = processor.readFile("data.txt");
-        assertEquals("new content", content);
+        // Act
+        String content = processor.readFile(filename);
+
+        // Assert
+        assertEquals(expectedContent, content);
     }
 
     // ========================================================================

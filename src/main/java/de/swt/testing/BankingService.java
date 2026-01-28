@@ -15,8 +15,6 @@ public class BankingService {
      * @throws IllegalArgumentException if amount is not greater than zero
      */
     public static double[] transfer(double amount, double sourceBalance, double targetBalance) {
-        // Bug 2: missing validation — no IllegalArgumentException for amount <= 0
-        // Bug 1: uses > instead of >= so exact balance fails
         if (sourceBalance > amount) {
             return new double[]{sourceBalance - amount, targetBalance + amount};
         }

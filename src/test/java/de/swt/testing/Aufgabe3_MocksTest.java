@@ -47,26 +47,37 @@ class Aufgabe3_MocksTest {
 
     @Test
     void orderProcessorSendsConfirmationEmail() {
+        // Arrange
+        String customerEmail = "test@example.com";
+        double orderAmount = 42.50;
+        String expectedSubject = "Order Confirmation";
         MockEmailService mockEmail = new MockEmailService();
         OrderProcessor processor = new OrderProcessor(mockEmail);
 
-        boolean result = processor.processOrder("test@example.com", 42.50);
+        // Act
+        boolean result = processor.processOrder(customerEmail, orderAmount);
 
+        // Assert
         assertTrue(result);
         assertTrue(mockEmail.wasCalled, "EmailService sollte aufgerufen worden sein");
-        assertEquals("test@example.com", mockEmail.lastTo);
-        assertEquals("Order Confirmation", mockEmail.lastSubject);
+        assertEquals(customerEmail, mockEmail.lastTo);
+        assertEquals(expectedSubject, mockEmail.lastSubject);
         assertTrue(mockEmail.lastBody.contains("42"), "Body sollte den Betrag enthalten");
     }
 
     @Test
     void orderProcessorHandlesEmailFailure() {
+        // Arrange
+        String customerEmail = "test@example.com";
+        double orderAmount = 10.00;
         MockEmailService mockEmail = new MockEmailService();
         mockEmail.returnValue = false;
         OrderProcessor processor = new OrderProcessor(mockEmail);
 
-        boolean result = processor.processOrder("test@example.com", 10.00);
+        // Act
+        boolean result = processor.processOrder(customerEmail, orderAmount);
 
+        // Assert
         assertFalse(result, "processOrder sollte false zurückgeben, wenn E-Mail fehlschlägt");
     }
 

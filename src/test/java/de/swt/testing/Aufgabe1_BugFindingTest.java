@@ -19,27 +19,52 @@ class Aufgabe1_BugFindingTest {
 
     @Test
     void transferMovesMoneyBetweenAccounts() {
-        double[] result = BankingService.transfer(50, 200, 100);
+        // Arrange
+        double amount = 50;
+        double sourceBalance = 200;
+        double targetBalance = 100;
+        double expectedSourceBalance = 150;
+        double expectedTargetBalance = 150;
 
+        // Act
+        double[] result = BankingService.transfer(amount, sourceBalance, targetBalance);
+
+        // Assert
         assertNotNull(result);
-        assertEquals(150, result[0], "Quellkonto sollte 150 haben");
-        assertEquals(150, result[1], "Zielkonto sollte 150 haben");
+        assertEquals(expectedSourceBalance, result[0], "Quellkonto sollte 150 haben");
+        assertEquals(expectedTargetBalance, result[1], "Zielkonto sollte 150 haben");
     }
 
     @Test
     void transferWithInsufficientFundsReturnsNull() {
-        double[] result = BankingService.transfer(300, 200, 100);
+        // Arrange
+        double amount = 300;
+        double sourceBalance = 200;
+        double targetBalance = 100;
 
+        // Act
+        double[] result = BankingService.transfer(amount, sourceBalance, targetBalance);
+
+        // Assert
         assertNull(result, "Transfer ohne ausreichendes Guthaben sollte null zurückgeben");
     }
 
     @Test
     void transferSmallAmount() {
-        double[] result = BankingService.transfer(1, 1000, 0);
+        // Arrange
+        double amount = 1;
+        double sourceBalance = 1000;
+        double targetBalance = 0;
+        double expectedSourceBalance = 999;
+        double expectedTargetBalance = 1;
 
+        // Act
+        double[] result = BankingService.transfer(amount, sourceBalance, targetBalance);
+
+        // Assert
         assertNotNull(result);
-        assertEquals(999, result[0]);
-        assertEquals(1, result[1]);
+        assertEquals(expectedSourceBalance, result[0]);
+        assertEquals(expectedTargetBalance, result[1]);
     }
 
     // ========================================================================
@@ -68,10 +93,19 @@ class Aufgabe1_BugFindingTest {
     @Disabled("Referenz-Test: schlägt fehl wegen Bug in BankingService")
     @Test
     void referenceTransferExactBalanceShouldWork() {
-        double[] result = BankingService.transfer(200, 200, 100);
+        // Arrange
+        double amount = 200;
+        double sourceBalance = 200;
+        double targetBalance = 100;
+        double expectedSourceBalance = 0;
+        double expectedTargetBalance = 300;
 
+        // Act
+        double[] result = BankingService.transfer(amount, sourceBalance, targetBalance);
+
+        // Assert
         assertNotNull(result, "Transfer mit exaktem Kontostand sollte funktionieren");
-        assertEquals(0, result[0]);
-        assertEquals(300, result[1]);
+        assertEquals(expectedSourceBalance, result[0]);
+        assertEquals(expectedTargetBalance, result[1]);
     }
 }
